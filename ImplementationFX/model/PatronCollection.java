@@ -28,11 +28,10 @@ public class patronCollection extends EntityBase
         Vector<Patron> patronList = new Vector<Patron>();
         
     }
-}
 
-/**Use a query SELECT * FROM Patron WHERE dateOfBirth >= date (our string date)*/
+    /**Use a query SELECT * FROM Patron WHERE dateOfBirth >= date (our string date)*/
 //==============================================================
-void findPatronsOlderThan(String date)
+public Vector<Patron> findPatronsOlderThan(String date)
 {
     //Give an error if the date given is empty / null (?)
 
@@ -57,8 +56,11 @@ void findPatronsOlderThan(String date)
 
         } // end count for
     } // end if allDataRetrieved
+    
     return patrons;
 } // end findPatronsOlderTHan
+
+} // end of patronCollection class
 
 
 
