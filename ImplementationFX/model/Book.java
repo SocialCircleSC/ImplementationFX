@@ -28,11 +28,11 @@ public class Book extends EntityBase implements IView {
     private String updateStatusMessage = "";
 
     // Constructor
-    public Book(String bookId) throws InvalidPrimaryKeyException {
+    public Book(Properties nextBook) throws InvalidPrimaryKeyException {
         super(myTableName);
 
         setDependencies();
-        String query = "SELECT * FROM " + myTableName + " WHERE (BookId = " + bookId + ")";
+        String query = "SELECT * FROM " + myTableName + " WHERE (BookId = " + nextBook + ")";
 
         Vector<Properties> allDataRetrieved = getSelectQueryResult(query);
 
@@ -43,7 +43,7 @@ public class Book extends EntityBase implements IView {
             // There should be EXACTLY one book. More than that is an error
             if (size != 1) {
                 throw new InvalidPrimaryKeyException("Multiple books matching id : "
-                        + bookId + " found.");
+                        + nextBook + " found.");
             } else {
                 // copy all the retrieved data into persistent state
                 Properties retrievedBookData = allDataRetrieved.elementAt(0);
@@ -65,7 +65,7 @@ public class Book extends EntityBase implements IView {
         // If no Book found for this user name, throw an exception
         else {
             throw new InvalidPrimaryKeyException("No book matching id : "
-                    + bookId + " found.");
+                    + nextBook + " found.");
         }
     }
 
@@ -118,7 +118,7 @@ public class Book extends EntityBase implements IView {
     }
 
     @Override
-    public Object getState(String key) {
+    public String getState(String key) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getState'");
     }
