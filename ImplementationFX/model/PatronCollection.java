@@ -10,12 +10,13 @@ import java.util.Vector;
 
 // project imports
 import exception.InvalidPrimaryKeyException;
+import impresario.IView;
 import event.Event;
 import database.*;
 
 /** The class containing the PatronCollection for the BookKeeping application */
 //==============================================================
-public class patronCollection extends EntityBase
+public class PatronCollection extends EntityBase implements IView
 {
     private static final String myTableName = "Patron";
     private Vector<Patron> patrons; // Define a vector of patron objects, this will be our collection
@@ -24,7 +25,6 @@ public class patronCollection extends EntityBase
     public PatronCollection() throws Exception
     {
         super(myTableName);
-
         Vector<Patron> patronList = new Vector<Patron>();
         
     }
@@ -56,9 +56,37 @@ public Vector<Patron> findPatronsOlderThan(String date)
 
         } // end count for
     } // end if allDataRetrieved
-    
+
     return patrons;
 } // end findPatronsOlderTHan
+
+    public Object getState(String key)
+	{
+		throw new UnsupportedOperationException("Unimplemented method 'getState'")
+	}
+    
+    /** Called via the IView relationship */
+	//----------------------------------------------------------
+	public void updateState(String key, Object value)
+	{
+		stateChangeRequest(key, value);
+	}
+
+    public void stateChangeRequest(String key, Object value)
+	{
+		throw new UnsupportedOperationException("Unimplemented method 'stateChangeRequest'");
+	}
+
+    // note: all classes inheriting from entityBase must include this
+  	//-----------------------------------------------------------------------------------
+    protected void initializeSchema(String tableName)
+	{
+		if (mySchema == null)
+		{
+			mySchema = getSchemaInfo(tableName);
+		}
+	}
+
 
 } // end of patronCollection class
 
