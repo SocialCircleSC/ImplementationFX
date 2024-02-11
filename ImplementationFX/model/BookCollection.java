@@ -1,48 +1,105 @@
 package model;
+
 import java.util.Vector;
 
 import exception.InvalidPrimaryKeyException;
 import impresario.IView;
 import java.util.Properties;
 
-
-
-public class BookCollection extends EntityBase implements IView{
+public class BookCollection extends EntityBase implements IView {
 
     private static final String myTableName = "Book";
     Vector<Book> olderBooks = new Vector();
-    public BookCollection(){
+    Vector<Book> newerBooks = new Vector();
+    Vector<Book> titleLike = new Vector();
+    Vector<Book> authorLike = new Vector();
+
+    public BookCollection() {
         super(myTableName);
         Vector<Book> bookList = new Vector();
     }
 
-    private Vector<Book> findBooksOlderThanDate(String date) throws InvalidPrimaryKeyException{
-        
+    private Vector<Book> findBooksOlderThanDate(String date) throws InvalidPrimaryKeyException {
 
-        //The query to get all the books
-        String query = "SELECT * FROM " + myTableName + " WHERE (pubyear = " + date + ")";
-		Vector allDataRetrieved = getSelectQueryResult(query);
+        // The query to get all the books
+        String query = "SELECT * FROM " + myTableName + " WHERE (pubyear > " + date + ")";
+        Vector allDataRetrieved = getSelectQueryResult(query);
 
-        //Check if each book has a date older than given date
-        for(int i=0; i < allDataRetrieved.size(); i++){
-            Properties nextBook = (Properties)allDataRetrieved.elementAt(i);
+        // Check if each book has a date older than given date
+        for (int i = 0; i < allDataRetrieved.size(); i++) {
+            Properties nextBook = (Properties) allDataRetrieved.elementAt(i);
 
-            //Remeber in the Book class you change the type of the contructor from String to Properties
+            // Remeber in the Book class you change the type of the contructor from String
+            // to Properties
             Book book = new Book(nextBook);
-
-            if(Integer.parseInt(book.getState("pubyear")) > Integer.parseInt(date)){
-                olderBooks.add(book);
-            }
+            olderBooks.add(book);
         }
 
-   
         return olderBooks;
 
     }
 
+    private Vector<Book> findBooksNewerThanDate(String date) throws InvalidPrimaryKeyException {
 
+        // The query to get all the books
+        //I think I did this wrong can I just use > instead of = in the query statement?
+        String query = "SELECT * FROM " + myTableName + " WHERE (pubyear < " + date + ")";
+        Vector allDataRetrieved = getSelectQueryResult(query);
 
+        // Check if each book has a date newer than given date
+        for (int i = 0; i < allDataRetrieved.size(); i++) {
+            Properties nextBook = (Properties) allDataRetrieved.elementAt(i);
 
+            // Remeber in the Book class you change the type of the contructor from String
+            // to Properties
+            Book book = new Book(nextBook);
+            newerBooks.add(book);
+
+        }
+
+        return newerBooks;
+
+    }
+
+    private Vector<Book> findBooksWithTitleLike(String title) throws InvalidPrimaryKeyException {
+
+        // The query to get all the books
+        String query = "SELECT * FROM " + myTableName + " WHERE (bookTitle LIKE " + title + ")";
+        Vector allDataRetrieved = getSelectQueryResult(query);
+
+        // Check if each book has a date newer than given date
+        for (int i = 0; i < allDataRetrieved.size(); i++) {
+            Properties nextBook = (Properties) allDataRetrieved.elementAt(i);
+
+            // Remeber in the Book class you change the type of the contructor from String
+            // to Properties
+            Book book = new Book(nextBook);
+            titleLike.add(book);
+        }
+
+        return newerBooks;
+
+    }
+
+    private Vector<Book> findBooksWithAuthorLike(String title) throws InvalidPrimaryKeyException {
+
+        // The query to get all the books
+        String query = "SELECT * FROM " + myTableName + " WHERE (bookTitle LIKE " + title + ")";
+        Vector allDataRetrieved = getSelectQueryResult(query);
+
+        // Check if each book has a date newer than given date
+        for (int i = 0; i < allDataRetrieved.size(); i++) {
+            Properties nextBook = (Properties) allDataRetrieved.elementAt(i);
+
+            // Remeber in the Book class you change the type of the contructor from String
+            // to Properties
+            Book book = new Book(nextBook);
+            authorLike.add(book);
+        }
+
+        return newerBooks;
+
+    }
 
     @Override
     public void updateState(String key, Object value) {
@@ -63,10 +120,9 @@ public class BookCollection extends EntityBase implements IView{
 
     @Override
     protected void initializeSchema(String tableName) {
-        if (mySchema == null)
-		{
-			mySchema = getSchemaInfo(tableName);
-		}
+        if (mySchema == null) {
+            mySchema = getSchemaInfo(tableName);
+        }
 
     }
 }
