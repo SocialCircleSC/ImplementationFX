@@ -28,11 +28,11 @@ public class Book extends EntityBase implements IView {
     private String updateStatusMessage = "";
 
     // Constructor
-    public Book(Properties nextBook) throws InvalidPrimaryKeyException {
+    public Book(String bookId) throws InvalidPrimaryKeyException {
         super(myTableName);
 
         setDependencies();
-        String query = "SELECT * FROM " + myTableName + " WHERE (BookId = " + nextBook + ")";
+        String query = "SELECT * FROM " + myTableName + " WHERE (BookId = " + bookId + ")";
 
         Vector<Properties> allDataRetrieved = getSelectQueryResult(query);
 
@@ -43,7 +43,7 @@ public class Book extends EntityBase implements IView {
             // There should be EXACTLY one book. More than that is an error
             if (size != 1) {
                 throw new InvalidPrimaryKeyException("Multiple books matching id : "
-                        + nextBook + " found.");
+                        + bookId + " found.");
             } else {
                 // copy all the retrieved data into persistent state
                 Properties retrievedBookData = allDataRetrieved.elementAt(0);
@@ -65,12 +65,27 @@ public class Book extends EntityBase implements IView {
         // If no Book found for this user name, throw an exception
         else {
             throw new InvalidPrimaryKeyException("No book matching id : "
-                    + nextBook + " found.");
+                    + bookId + " found.");
         }
     }
 
-    public void update() // save()
-    {
+    public Book(Properties props) {
+        super(myTableName);
+
+        setDependencies();
+        persistentState = new Properties();
+        Enumeration allKeys = props.propertyNames();
+        while (allKeys.hasMoreElements() == true) {
+            String nextKey = (String) allKeys.nextElement();
+            String nextValue = props.getProperty(nextKey);
+
+            if (nextValue != null) {
+                persistentState.setProperty(nextKey, nextValue);
+            }
+        }
+    }
+
+    public void save() {
         updateStateInDatabase();
     }
 

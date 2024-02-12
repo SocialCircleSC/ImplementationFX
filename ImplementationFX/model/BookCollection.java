@@ -9,20 +9,16 @@ import java.util.Properties;
 public class BookCollection extends EntityBase implements IView {
 
     private static final String myTableName = "Book";
-    Vector<Book> olderBooks = new Vector();
-    Vector<Book> newerBooks = new Vector();
-    Vector<Book> titleLike = new Vector();
-    Vector<Book> authorLike = new Vector();
+   
+    Vector<Book> bookList = new Vector();
 
     public BookCollection() {
         super(myTableName);
-        Vector<Book> bookList = new Vector();
+        bookList = new Vector();
     }
 
-    private Vector<Book> findBooksOlderThanDate(String date) throws InvalidPrimaryKeyException {
-
-        // The query to get all the books
-        String query = "SELECT * FROM " + myTableName + " WHERE (pubyear > " + date + ")";
+    private void executeQueryAndPopulate(String query)
+    {
         Vector allDataRetrieved = getSelectQueryResult(query);
 
         // Check if each book has a date older than given date
@@ -32,72 +28,40 @@ public class BookCollection extends EntityBase implements IView {
             // Remeber in the Book class you change the type of the contructor from String
             // to Properties
             Book book = new Book(nextBook);
-            olderBooks.add(book);
+            bookList.add(book);
         }
-
-        return olderBooks;
-
     }
 
-    private Vector<Book> findBooksNewerThanDate(String date) throws InvalidPrimaryKeyException {
+    private void findBooksOlderThanDate(String date)  {
 
         // The query to get all the books
-        //I think I did this wrong can I just use > instead of = in the query statement?
+        String query = "SELECT * FROM " + myTableName + " WHERE (pubyear > " + date + ")";
+        executeQueryAndPopulate(query);
+    }
+
+    private void findBooksNewerThanDate(String date)  {
+
+        // The query to get all the books
+        // I think I did this wrong can I just use > instead of = in the query
+        // statement?
         String query = "SELECT * FROM " + myTableName + " WHERE (pubyear < " + date + ")";
-        Vector allDataRetrieved = getSelectQueryResult(query);
-
-        // Check if each book has a date newer than given date
-        for (int i = 0; i < allDataRetrieved.size(); i++) {
-            Properties nextBook = (Properties) allDataRetrieved.elementAt(i);
-
-            // Remeber in the Book class you change the type of the contructor from String
-            // to Properties
-            Book book = new Book(nextBook);
-            newerBooks.add(book);
-
-        }
-
-        return newerBooks;
+        executeQueryAndPopulate(query);
 
     }
 
-    private Vector<Book> findBooksWithTitleLike(String title) throws InvalidPrimaryKeyException {
+    private void findBooksWithTitleLike(String title)  {
 
         // The query to get all the books
-        String query = "SELECT * FROM " + myTableName + " WHERE (bookTitle LIKE " + title + ")";
-        Vector allDataRetrieved = getSelectQueryResult(query);
-
-        // Check if each book has a date newer than given date
-        for (int i = 0; i < allDataRetrieved.size(); i++) {
-            Properties nextBook = (Properties) allDataRetrieved.elementAt(i);
-
-            // Remeber in the Book class you change the type of the contructor from String
-            // to Properties
-            Book book = new Book(nextBook);
-            titleLike.add(book);
-        }
-
-        return newerBooks;
+        String query = "SELECT * FROM " + myTableName + " WHERE (bookTitle LIKE '%" + title + "%'')";
+        executeQueryAndPopulate(query);
 
     }
 
-    private Vector<Book> findBooksWithAuthorLike(String title) throws InvalidPrimaryKeyException {
+    private void findBooksWithAuthorLike(String title)  {
 
         // The query to get all the books
-        String query = "SELECT * FROM " + myTableName + " WHERE (bookTitle LIKE " + title + ")";
-        Vector allDataRetrieved = getSelectQueryResult(query);
-
-        // Check if each book has a date newer than given date
-        for (int i = 0; i < allDataRetrieved.size(); i++) {
-            Properties nextBook = (Properties) allDataRetrieved.elementAt(i);
-
-            // Remeber in the Book class you change the type of the contructor from String
-            // to Properties
-            Book book = new Book(nextBook);
-            authorLike.add(book);
-        }
-
-        return newerBooks;
+        String query = "SELECT * FROM " + myTableName + " WHERE (bookTitle LIKE '%" + title + "%'')";
+        executeQueryAndPopulate(query);
 
     }
 
