@@ -1,7 +1,43 @@
-/* public class TestAssign1 {
-    
+import java.util.Scanner;
+import java.util.Vector;
+
+import model.Book;
+import java.util.Properties;
+
+public class TestAssign1 {
+    public static void main(String[] args) {
+
+        forBook();
+
+
+    }
+
+    public static void forBook(){
+        Properties insertProp = new Properties();
+
+        Scanner bookTScanner = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("Enter Book Title: ");  //Ask user for new book title
+        String bookTitle = bookTScanner.nextLine();
+
+        Scanner  bookAScanner = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("Enter Book Author: ");  //Ask user for new book author
+        String bookAuthor = bookAScanner.nextLine();
+
+        Scanner  bookPYScanner = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("Enter the book's publish year: ");  //Ask user for new book pub yeear
+        String bookPubYear = bookPYScanner.nextLine();
+
+        insertProp.setProperty("bookTitle", bookTitle);
+        insertProp.setProperty("author", bookAuthor);
+        insertProp.setProperty("pubyear", bookPubYear);
+
+        Book insertBook = new Book(insertProp);
+        insertBook.save();
+
+        System.out.println("Added to database");
+    }
 }
- */
+
 
 /*  Insert a new book into the database */
 // ==============================================================
