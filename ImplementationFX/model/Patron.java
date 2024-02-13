@@ -130,6 +130,19 @@ public class Patron extends EntityBase implements IView {
 		}
 	}
 
+	/* Return Patron information as a String */
+	// ==============================================================
+	public String toString()
+	{
+		return persistentState.getProperty("patronId") + " Name: " + persistentState.getProperty("name") +
+		" Email: " + persistentState.getProperty("email") + " Status: " + persistentState.getProperty("status");
+	} // end of toString
+
+	public void display()
+	{
+		
+	}
+
 	// -----------------------------------------------------------------------------------
 	private void setDependencies() {
 		dependencies = new Properties();
