@@ -2,6 +2,8 @@ import java.util.Scanner;
 import java.util.Vector;
 
 import model.Book;
+import model.BookCollection;
+
 import java.util.Properties;
 
 public class TestAssign1 {
@@ -12,6 +14,8 @@ public class TestAssign1 {
 
     }
 
+/*  Insert a new book into the database */
+// ==============================================================    
     public static void forBook(){
         Properties insertProp = new Properties();
 
@@ -36,16 +40,25 @@ public class TestAssign1 {
 
         System.out.println("Added to database");
     }
+
+    /* Given a part of a title of a book, print all book data for books that match this title */
+    // ==============================================================
+    public static void getBookFromTitle()
+    {
+        // Get a book title from user
+        Scanner bookTScanner = new Scanner(System.in); // create input scanner
+        System.out.println("ENter title of book to search: ");
+        String bookTitle = bookTScanner.nextLine();
+        BookCollection findBook = new BookCollection();
+
+        // Get a collection of books with similar title and display to user
+        findBook.findBooksWithTitleLike(bookTitle);
+        System.out.println("Books matching title: '" + bookTitle + "' found: ");
+        findBook.displayCollection();
+    }
 }
 
-
-/*  Insert a new book into the database */
-// ==============================================================
-
 /* Insert a new patron into the database */
-// ==============================================================
-
-/* Given a part of a title of a book, print all book data for books that match this title */
 // ==============================================================
 
 /* Given a year, print all book data for books that are published before that year */
