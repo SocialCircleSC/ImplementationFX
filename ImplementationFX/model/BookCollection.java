@@ -65,6 +65,17 @@ public class BookCollection extends EntityBase implements IView {
 
     }
 
+    /* Display each Book information from Book in Collection to user */
+	// ==============================================================
+	public void displayCollection()
+	{
+        // Cycle through each Patron in the Patron collection
+		for (int count = 0; count < bookList.size(); count++)
+        {
+            System.out.println(bookList.elementAt(count).toString();); // Convert each Book information to a string and display it
+        }
+	}
+
     @Override
     public void updateState(String key, Object value) {
         stateChangeRequest(key, value);

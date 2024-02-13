@@ -112,6 +112,21 @@ public class Book extends EntityBase implements IView {
         // DEBUG System.out.println("updateStateInDatabase " + updateStatusMessage);
     }
 
+    /* Return Book information as a string */
+    // -----------------------------------------------------------------------------------
+    public String toString()
+    {
+        return "Title: " + persistentState.getProperty("bookTitle") + " Author: " + persistentState.getProperty("author") +
+        " Year: " + persistentState.getProperty("pubYear");
+    }
+
+    /* Display Book information to user  */
+    // -----------------------------------------------------------------------------------
+    public void display()
+    {
+        System.out.println(toString());
+    }
+
     // -----------------------------------------------------------------------------------
     private void setDependencies() {
         dependencies = new Properties();

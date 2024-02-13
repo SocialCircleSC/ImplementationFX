@@ -138,9 +138,11 @@ public class Patron extends EntityBase implements IView {
 		" Email: " + persistentState.getProperty("email") + " Status: " + persistentState.getProperty("status");
 	} // end of toString
 
+	/* Display Patron information to user */
+	// ==============================================================
 	public void display()
 	{
-		
+		System.out.println(toString());
 	}
 
 	// -----------------------------------------------------------------------------------

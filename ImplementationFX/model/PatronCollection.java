@@ -81,6 +81,18 @@ public class PatronCollection extends EntityBase implements IView {
         executeQueryAndPopulate(query);
     } // end of findPatronsWithNameLike
 
+
+    /* Display each Patron information from Patron in Collection to user */
+	// ==============================================================
+	public void displayCollection()
+	{
+        // Cycle through each Patron in the Patron collection
+		for (int count = 0; count < patrons.size(); count++)
+        {
+            System.out.println(patrons.elementAt(count).toString();); // Convert each patron information to a string and display it
+        }
+	}
+    
     public Object getState(String key)
 	{
 		throw new UnsupportedOperationException("Unimplemented method 'getState'");
