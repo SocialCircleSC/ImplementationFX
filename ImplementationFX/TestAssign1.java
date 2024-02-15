@@ -3,15 +3,17 @@ import java.util.Vector;
 
 import model.Book;
 import model.BookCollection;
+import model.Patron;
+import model.PatronCollection;
 
 import java.util.Properties;
+import database.*;
 
 public class TestAssign1 {
     public static void main(String[] args) {
 
         forBook();
-
-
+        
     }
 
 /*  Insert a new book into the database */
