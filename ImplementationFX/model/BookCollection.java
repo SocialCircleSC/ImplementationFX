@@ -32,14 +32,14 @@ public class BookCollection extends EntityBase implements IView {
         }
     }
 
-    private void findBooksOlderThanDate(String date)  {
+    public void findBooksOlderThanDate(String date)  {
 
         // The query to get all the books
         String query = "SELECT * FROM " + myTableName + " WHERE (pubyear > " + date + ")";
         executeQueryAndPopulate(query);
     }
 
-    private void findBooksNewerThanDate(String date)  {
+    public void findBooksNewerThanDate(String date)  {
 
         // The query to get all the books
         // I think I did this wrong can I just use > instead of = in the query
@@ -49,7 +49,7 @@ public class BookCollection extends EntityBase implements IView {
 
     }
 
-    private void findBooksWithTitleLike(String title)  {
+    public void findBooksWithTitleLike(String title)  {
 
         // The query to get all the books
         String query = "SELECT * FROM " + myTableName + " WHERE (bookTitle LIKE '%" + title + "%'')";
@@ -57,7 +57,7 @@ public class BookCollection extends EntityBase implements IView {
 
     }
 
-    private void findBooksWithAuthorLike(String title)  {
+    public void findBooksWithAuthorLike(String title)  {
 
         // The query to get all the books
         String query = "SELECT * FROM " + myTableName + " WHERE (bookTitle LIKE '%" + title + "%'')";
