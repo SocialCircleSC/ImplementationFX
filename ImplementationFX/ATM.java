@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 import java.io.FileOutputStream;
 import java.io.File;
 
-import javafx.application.Application;
+import javafx.application.Application; //need this for javafx
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -37,7 +37,7 @@ import userinterface.WindowPosition;
 
 /** The class containing the main program  for the ATM application */
 //==============================================================
-public class ATM extends Application
+public class ATM extends Application // extend application from javafx
 {
 
 	private Teller myTeller;		// the main behavior for the application
@@ -87,6 +87,7 @@ public class ATM extends Application
 	/** 
 	 * The "main" entry point for the application. Carries out actions to
 	 * set up the application
+	 * Must be in class extending Application to usue javafx, must have this as main method for any javafx app
 	 */
 	//----------------------------------------------------------
     	public static void main(String[] args)

@@ -13,3 +13,4 @@
 [6/11/15 4:59 PM]|DepositTransaction|processTransaction|Error|NOTAG|null<Failed to verify ownership of account number : 2.>
 [6/11/15 5:04 PM]|DepositTransaction|processTransaction|Error|NOTAG|null<Failed to verify ownership of account number : 2.>
 [2/13/24 1:43 PM]|JDBCBroker|JDBCBroker|Error|NOTAG|null<Could not load driver class[org.mariadb.jdbc.Driver]>
+[2/15/24 1:15 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: (conn=45346) Field 'status' doesn't have a default value>
