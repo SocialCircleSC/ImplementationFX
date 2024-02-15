@@ -89,7 +89,7 @@ public class PatronCollection extends EntityBase implements IView {
         // Cycle through each Patron in the Patron collection
 		for (int count = 0; count < patrons.size(); count++)
         {
-            System.out.println(patrons.elementAt(count).toString();); // Convert each patron information to a string and display it
+            System.out.println(patrons.elementAt(count).toString()); // Convert each patron information to a string and display it
         }
 	}
     
