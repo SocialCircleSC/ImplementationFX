@@ -117,7 +117,7 @@ public class Book extends EntityBase implements IView {
     public String toString()
     {
         return "Title: " + persistentState.getProperty("bookTitle") + " Author: " + persistentState.getProperty("author") +
-        " Year: " + persistentState.getProperty("pubYear");
+        " Year: " + persistentState.getProperty("pubyear");
     }
 
     /* Display Book information to user  */
