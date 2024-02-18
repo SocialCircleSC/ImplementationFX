@@ -121,7 +121,6 @@ public class TestAssign1 {
         Scanner patronDScanner = new Scanner(System.in);
         System.out.println("Enter date of birth of patron: ");
         String patronDate = patronDScanner.nextLine();
-        PatronCollection findPatron = new PatronCollection();
         PatronCollection findPatron = new PatronCollection(); 
 
         findPatron.findPatronsYoungerThan(patronDate);
