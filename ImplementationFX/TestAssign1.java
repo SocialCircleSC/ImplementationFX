@@ -13,8 +13,8 @@ public class TestAssign1 {
     public static void main(String[] args) {
 
         // forBook();
-        forPatron();
-        // getBookFromTitle();
+        // forPatron();
+        getBookFromTitle();
 
     }
 
@@ -96,7 +96,10 @@ public class TestAssign1 {
      * Given a part of a title of a book, print all book data for books that match
      * this title
      */
- /* Given a part of a title of a book, print all book data for books that match this title */
+    /*
+     * Given a part of a title of a book, print all book data for books that match
+     * this title
+     */
     // ==============================================================
     public static void getBookFromTitle() {
         // Get a book title from user
@@ -121,7 +124,7 @@ public class TestAssign1 {
         Scanner patronDScanner = new Scanner(System.in);
         System.out.println("Enter date of birth of patron: ");
         String patronDate = patronDScanner.nextLine();
-        PatronCollection findPatron = new PatronCollection(); 
+        PatronCollection findPatron = new PatronCollection();
 
         findPatron.findPatronsYoungerThan(patronDate);
         System.out.println("Patrons younger than: " + patronDate + " found: ");
