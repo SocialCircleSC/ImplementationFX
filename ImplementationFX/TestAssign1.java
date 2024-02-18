@@ -96,6 +96,7 @@ public class TestAssign1 {
      * Given a part of a title of a book, print all book data for books that match
      * this title
      */
+ /* Given a part of a title of a book, print all book data for books that match this title */
     // ==============================================================
     public static void getBookFromTitle() {
         // Get a book title from user
@@ -121,6 +122,8 @@ public class TestAssign1 {
         System.out.println("Enter date of birth of patron: ");
         String patronDate = patronDScanner.nextLine();
         PatronCollection findPatron = new PatronCollection();
+        PatronCollection findPatron = new PatronCollection(); 
+
         findPatron.findPatronsYoungerThan(patronDate);
         System.out.println("Patrons younger than: " + patronDate + " found: ");
         findPatron.displayCollection();
@@ -134,6 +137,8 @@ public class TestAssign1 {
         System.out.println("Enter zip code of Patron: ");
         String patronZip = patronZScanner.nextLine();
         PatronCollection findPatron = new PatronCollection();
+
+        findPatron.findPatronsAtZipCode(patronZip);
         System.out.println("Patrons that live on " + patronZip + " found: ");
         findPatron.displayCollection();
     }
