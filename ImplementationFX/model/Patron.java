@@ -19,15 +19,15 @@ public class Patron extends EntityBase implements IView {
 	private String updateStatusMessage = ""; // For GUI
 
 	// Constructor
-	// from patronId in database
+	// from patronID in database
 	// ----------------------------------------------------------
-	public Patron(String patronId)
+	public Patron(String patronID)
 			throws InvalidPrimaryKeyException {
 		super(myTableName);
 		setDependencies();
 
 		// Get row from Patron table w/ matching Id
-		String query = "SELECT * FROM " + myTableName + " WHERE (patronId = " + patronId + ")";
+		String query = "SELECT * FROM " + myTableName + " WHERE (patronID = " + patronID + ")";
 
 		Vector<Properties> allDataRetrieved = getSelectQueryResult(query); // get attributes from patron table as
 																			// "properties"
@@ -39,7 +39,7 @@ public class Patron extends EntityBase implements IView {
 
 			// There should be EXACTLY one account. More than that is an error
 			if (size != 1) {
-				throw new InvalidPrimaryKeyException("Multiple patrons matching id : " + patronId + " found.");
+				throw new InvalidPrimaryKeyException("Multiple patrons matching id : " + patronID + " found.");
 			}
 
 			else {
@@ -64,9 +64,9 @@ public class Patron extends EntityBase implements IView {
 			}
 		} // end if allDataRetrieved
 
-		// If no account matching patronId is found
+		// If no account matching patronID is found
 		else {
-			throw new InvalidPrimaryKeyException("No patron matching id: " + patronId + " found.");
+			throw new InvalidPrimaryKeyException("No patron matching id: " + patronID + " found.");
 		}
 
 	} // end of constructor
@@ -106,20 +106,22 @@ public class Patron extends EntityBase implements IView {
 
 	private void updateStateInDatabase() {
 		try {
-			if (persistentState.getProperty("patronId") != null) // we are updating an existing patrons data
+			if (persistentState.getProperty("patronID") != null) // we are updating an existing patrons data
 			{
 				Properties whereClause = new Properties();
-				whereClause.setProperty("patronId", persistentState.getProperty("patronId")); // specify which field for
+				whereClause.setProperty("patronID", persistentState.getProperty("patronID")); // specify which field for
 																								// query
-				persistentState.getProperty("patronId"); // get data to save from persistent state
+				persistentState.getProperty("patronID"); // get data to save from persistent state
 				updatePersistentState(mySchema, persistentState, whereClause);
-				updateStatusMessage = "Patron data for patronId: " + persistentState.getProperty("patronId")
+				updateStatusMessage = "Patron data for patronID: " + persistentState.getProperty("patronID")
 						+ " successfully updated in database!";
 			} else // "saving" new data, inserting new row to table
 			{
-				Integer patronId = insertAutoIncrementalPersistentState(mySchema, persistentState); // patronId is																					// dbms
-				persistentState.setProperty("patronId", "" + patronId.intValue());
-				updateStatusMessage = "Patron data for new patronId: " + persistentState.getProperty("patronId")
+				Integer patronNumber = insertAutoIncrementalPersistentState(mySchema, persistentState); // patronID is
+																										// //
+				// dbms
+				persistentState.setProperty("patronID", "" + patronNumber.intValue());
+				updateStatusMessage = "Patron data for new patronID: " + persistentState.getProperty("patronID")
 						+ " successfully saved in database!";
 			}
 		} catch (SQLException ex) // provide error info if we run into sql trouble
@@ -130,16 +132,21 @@ public class Patron extends EntityBase implements IView {
 
 	/* Return Patron information as a String */
 	// ==============================================================
-	public String toString()
-	{
-		return persistentState.getProperty("patronId") + " Name: " + persistentState.getProperty("name") +
-		" Email: " + persistentState.getProperty("email") + " Status: " + persistentState.getProperty("status");
+	public String toString() {
+		return persistentState.getProperty("patronID") +
+				" Name: " + persistentState.getProperty("name") +
+				" Address" + persistentState.getProperty("address") +
+				" City" + persistentState.getProperty("city") +
+				" StateCode" + persistentState.getProperty("stateCode") +
+				" Zipcode" + persistentState.getProperty("zip") +
+				" Email: " + persistentState.getProperty("email") +
+				" DOB" + persistentState.getProperty("dateOfBirth") +
+				" Status: " + persistentState.getProperty("status");
 	} // end of toString
 
 	/* Display Patron information to user */
 	// ==============================================================
-	public void display()
-	{
+	public void display() {
 		System.out.println(toString());
 	}
 

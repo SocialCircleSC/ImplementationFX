@@ -13,6 +13,7 @@
 [6/11/15 4:59 PM]|DepositTransaction|processTransaction|Error|NOTAG|null<Failed to verify ownership of account number : 2.>
 [6/11/15 5:04 PM]|DepositTransaction|processTransaction|Error|NOTAG|null<Failed to verify ownership of account number : 2.>
 [2/13/24 1:43 PM]|JDBCBroker|JDBCBroker|Error|NOTAG|null<Could not load driver class[org.mariadb.jdbc.Driver]>
+<<<<<<< HEAD
 [2/15/24 12:32 PM]|JDBCBroker|JDBCBroker|Error|NOTAG|null<Could not load driver class[org.mariadb.jdbc.Driver]>
 [2/15/24 12:32 PM]|JDBCBroker|JDBCBroker|Error|NOTAG|null<Could not load driver class[org.mariadb.jdbc.Driver]>
 [2/15/24 12:35 PM]|JDBCBroker|JDBCBroker|Error|NOTAG|null<Could not load driver class[org.mariadb.jdbc.Driver]>
@@ -28,3 +29,7 @@
 [2/15/24 1:19 PM]|JDBCBroker|JDBCBroker|Error|NOTAG|null<Could not load driver class[org.mariadb.jdbc.Driver]>
 [2/15/24 1:20 PM]|JDBCBroker|JDBCBroker|Error|NOTAG|null<Could not load driver class[org.mariadb.jdbc.Driver]>
 [2/15/24 1:21 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: (conn=45653) Field 'status' doesn't have a default value>
+=======
+[2/15/24 1:15 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: (conn=45346) Field 'status' doesn't have a default value>
+>>>>>>> f1d52644c2ed33f63ec09db0d2e05bdd6b7c73f6
+[2/18/24 3:38 PM]|Patron|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1406: (conn=48555) Data too long for column 'stateCode' at row 1>

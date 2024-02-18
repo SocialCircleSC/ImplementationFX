@@ -21,7 +21,7 @@ public class PatronCollection extends EntityBase implements IView {
     private Vector<Patron> patrons; // Define a vector of patron objects, this will be our collection
 
     // Consctructor for PatronCollection class
-    public PatronCollection() throws Exception {
+    public PatronCollection() {
         super(myTableName);
         patrons = new Vector<Patron>();
 
@@ -56,7 +56,7 @@ public class PatronCollection extends EntityBase implements IView {
      * Use a query SELECT * FROM Patron WHERE dateOfBirth >= date (our string date)
      */
     // ==============================================================
-    private void findPatronsOlderThan(String date) {
+    public void findPatronsOlderThan(String date) {
         // Give an error if the date given is empty / null (?)
 
         // Get patrons from database with dates > given date
@@ -65,18 +65,18 @@ public class PatronCollection extends EntityBase implements IView {
 
     } // end findPatronsOlderTHan
 
-    private void findPatronsYoungerThan(String date) {
+    public void findPatronsYoungerThan(String date) {
         String query = "SELECT * FROM " + myTableName + " WHERE (dateOfBirth < " + date + ")";
         executeQueryAndPopulate(query);
 
     } // end of findPatronsYoungerThan
 
-    private void findPatronsAtZipCode(String zip) {
+    public void findPatronsAtZipCode(String zip) {
         String query = "SELECT * FROM " + myTableName + " WHERE (zip = " + zip + ")";
         executeQueryAndPopulate(query);
     } // end of findPatronsAtZipCode
 
-    private void findPatronsWithNameLike(String name) {
+    public void findPatronsWithNameLike(String name) {
         String query = "SELECT * FROM " + myTableName + " WHERE ( name LIKE '%" + name + "%')";
         executeQueryAndPopulate(query);
     } // end of findPatronsWithNameLike
