@@ -22,7 +22,7 @@ public class TestAssign1 {
         // work
         // getPatronFromZip();
 
-    }
+    } // end of main
 
     /* Insert a new book into the database */
     // ==============================================================
@@ -96,12 +96,8 @@ public class TestAssign1 {
         insertPatron.save();
 
         System.out.println("Added to database");
-    } // end of
+    } // end of forPatron
 
-    /*
-     * Given a part of a title of a book, print all book data for books that match
-     * this title
-     */
     /*
      * Given a part of a title of a book, print all book data for books that match
      * this title
@@ -135,7 +131,7 @@ public class TestAssign1 {
         findPatron.findPatronsYoungerThan(patronDate);
         System.out.println("Patrons younger than: " + patronDate + " found: ");
         findPatron.displayCollection();
-    }
+    } // end of getPatronFromDate
 
     /* Given a zip, print all patron data for patrons that live at that zip */
     // ==============================================================
@@ -149,7 +145,7 @@ public class TestAssign1 {
         findPatron.findPatronsAtZipCode(patronZip);
         System.out.println("Patrons that live on " + patronZip + " found: ");
         findPatron.displayCollection();
-    }
+    } // end of getPatronFromZip
 
     /*
      * Given a date, print book data for books published before given date
@@ -165,6 +161,6 @@ public class TestAssign1 {
         findBook.findBooksNewerThanDate(bookDate);
         System.out.println("Books published before: " + bookDate + " found: ");
         findBook.displayCollection();
-    }
+    } // end of getBookFromDate
 
 }
