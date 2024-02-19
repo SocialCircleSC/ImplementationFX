@@ -158,7 +158,7 @@ public class TestAssign1 {
         String bookDate = bookDScanner.nextLine();
         BookCollection findBook = new BookCollection();
 
-        findBook.findBooksNewerThanDate(bookDate);
+        findBook.findBooksOlderThanDate(bookDate);
         System.out.println("Books published before: " + bookDate + " found: ");
         findBook.displayCollection();
     } // end of getBookFromDate
