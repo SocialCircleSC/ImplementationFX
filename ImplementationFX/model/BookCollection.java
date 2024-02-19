@@ -35,7 +35,7 @@ public class BookCollection extends EntityBase implements IView {
     public void findBooksOlderThanDate(String date)  {
 
         // The query to get all the books
-        String query = "SELECT * FROM " + myTableName + " WHERE pubyear > '%" + date + "%';";
+        String query = "SELECT * FROM " + myTableName + " WHERE (pubyear > '" + date + "')";
         executeQueryAndPopulate(query);
     }
 
@@ -45,7 +45,7 @@ public class BookCollection extends EntityBase implements IView {
         // I think I did this wrong can I just use > instead of = in the query
         // statement?
         //String query = "SELECT * FROM " + myTableName + " WHERE (pubyear < " + date + ")";
-        String query = "SELECT * FROM " + myTableName + " WHERE pubyear < '%" + date + "%';";
+        String query = "SELECT * FROM " + myTableName + " WHERE (pubyear < '" + date + "')";
         executeQueryAndPopulate(query);
 
     }
@@ -54,7 +54,7 @@ public class BookCollection extends EntityBase implements IView {
 
         // The query to get all the books
         //String query = "SELECT * FROM " + myTableName + " WHERE bookTitle LIKE '%" + title + "%';)";
-        String query = "SELECT * FROM " + myTableName + " WHERE bookTitle LIKE '%" + title + "%';";
+        String query = "SELECT * FROM " + myTableName + " WHERE (bookTitle LIKE '%" + title + "%')";
         executeQueryAndPopulate(query);
 
     }
@@ -62,7 +62,7 @@ public class BookCollection extends EntityBase implements IView {
     public void findBooksWithAuthorLike(String title)  {
 
         // The query to get all the books
-        String query = "SELECT * FROM " + myTableName + " WHERE bookTitle LIKE '%" + title + "%';";
+        String query = "SELECT * FROM " + myTableName + " WHERE (author LIKE '%" + title + "%')";
         executeQueryAndPopulate(query);
 
     }

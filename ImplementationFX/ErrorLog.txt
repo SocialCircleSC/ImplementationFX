@@ -33,3 +33,4 @@
 [2/15/24 1:15 PM]|Book|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: (conn=45346) Field 'status' doesn't have a default value>
 >>>>>>> f1d52644c2ed33f63ec09db0d2e05bdd6b7c73f6
 [2/18/24 3:38 PM]|Patron|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1406: (conn=48555) Data too long for column 'stateCode' at row 1>
+[2/18/24 4:06 PM]|PatronCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1064: (conn=48670) You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= '%456%'' at line 1>

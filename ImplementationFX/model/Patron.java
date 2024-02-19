@@ -135,12 +135,12 @@ public class Patron extends EntityBase implements IView {
 	public String toString() {
 		return persistentState.getProperty("patronID") +
 				" Name: " + persistentState.getProperty("name") +
-				" Address" + persistentState.getProperty("address") +
-				" City" + persistentState.getProperty("city") +
-				" StateCode" + persistentState.getProperty("stateCode") +
-				" Zipcode" + persistentState.getProperty("zip") +
+				" Address: " + persistentState.getProperty("address") +
+				" City: " + persistentState.getProperty("city") +
+				" StateCode: " + persistentState.getProperty("stateCode") +
+				" Zipcode: " + persistentState.getProperty("zip") +
 				" Email: " + persistentState.getProperty("email") +
-				" DOB" + persistentState.getProperty("dateOfBirth") +
+				" DOB: " + persistentState.getProperty("dateOfBirth") +
 				" Status: " + persistentState.getProperty("status");
 	} // end of toString
 

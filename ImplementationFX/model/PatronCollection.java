@@ -60,43 +60,40 @@ public class PatronCollection extends EntityBase implements IView {
         // Give an error if the date given is empty / null (?)
 
         // Get patrons from database with dates > given date
-        String query = "SELECT * FROM " + myTableName + " WHERE dateOfBirth > '%" + date + "%';";
+        String query = "SELECT * FROM " + myTableName + " WHERE (dateOfBirth > '" + date + "')";
         executeQueryAndPopulate(query);
 
     } // end findPatronsOlderTHan
 
     public void findPatronsYoungerThan(String date) {
-        String query = "SELECT * FROM " + myTableName + " WHERE dateOfBirth < '%" + date + "%';";
+        String query = "SELECT * FROM " + myTableName + " WHERE (dateOfBirth < '" + date + "')";
         executeQueryAndPopulate(query);
 
     } // end of findPatronsYoungerThan
 
     public void findPatronsAtZipCode(String zip) {
-        String query = "SELECT * FROM " + myTableName + " WHERE zip = '%" + zip + "%';";
+        String query = "SELECT * FROM " + myTableName + " WHERE (zip = " + zip + ")";
         executeQueryAndPopulate(query);
     } // end of findPatronsAtZipCode
 
     public void findPatronsWithNameLike(String name) {
-        String query = "SELECT * FROM " + myTableName + " WHERE name LIKE '%" + name + "%';";
+        String query = "SELECT * FROM " + myTableName + " WHERE (name LIKE '%" + name + "%')";
         executeQueryAndPopulate(query);
     } // end of findPatronsWithNameLike
 
-
     /* Display each Patron information from Patron in Collection to user */
-	// ==============================================================
-	public void displayCollection()
-	{
+    // ==============================================================
+    public void displayCollection() {
         // Cycle through each Patron in the Patron collection
-		for (int count = 0; count < patrons.size(); count++)
-        {
-            System.out.println(patrons.elementAt(count).toString()); // Convert each patron information to a string and display it
+        for (int count = 0; count < patrons.size(); count++) {
+            System.out.println(patrons.elementAt(count).toString()); // Convert each patron information to a string and
+                                                                     // display it
         }
-	}
-    
-    public Object getState(String key)
-	{
-		throw new UnsupportedOperationException("Unimplemented method 'getState'");
-	}
+    }
+
+    public Object getState(String key) {
+        throw new UnsupportedOperationException("Unimplemented method 'getState'");
+    }
 
     /** Called via the IView relationship */
     // ----------------------------------------------------------

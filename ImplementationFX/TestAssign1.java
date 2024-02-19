@@ -14,7 +14,13 @@ public class TestAssign1 {
 
         // forBook();
         // forPatron();
-        getBookFromTitle();
+        // getBookFromTitle();
+        // Missing One more function
+        getBookFromDate();
+        getPatronFromDate(); // Ask about making a query with the dashes. Comapring
+        // with them doesnt seem to
+        // work
+        // getPatronFromZip();
 
     }
 
@@ -144,5 +150,21 @@ public class TestAssign1 {
         System.out.println("Patrons that live on " + patronZip + " found: ");
         findPatron.displayCollection();
     }
-}
 
+    /*
+     * Given a date, print book data for books published before given date
+     */
+    // ==============================================================
+    public static void getBookFromDate() {
+        // Get a Patron birth date from user
+        Scanner bookDScanner = new Scanner(System.in);
+        System.out.println("Enter publish date of book: ");
+        String bookDate = bookDScanner.nextLine();
+        BookCollection findBook = new BookCollection();
+
+        findBook.findBooksNewerThanDate(bookDate);
+        System.out.println("Books published before: " + bookDate + " found: ");
+        findBook.displayCollection();
+    }
+
+}
