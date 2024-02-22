@@ -81,7 +81,7 @@ public class AccountCollectionView extends View
 	protected void getEntryTableModelValues()
 	{
 		
-		ObservableList<AccountTableModel> tableData = FXCollections.observableArrayList();
+		ObservableList<AccountTableModel> tableData = FXCollections.observableArrayList(); // this must be used
 		try
 		{
 			AccountCollection accountCollection = (AccountCollection)myModel.getState("AccountList");

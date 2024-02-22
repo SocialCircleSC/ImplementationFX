@@ -60,13 +60,13 @@ public class PatronCollection extends EntityBase implements IView {
         // Give an error if the date given is empty / null (?)
 
         // Get patrons from database with dates > given date
-        String query = "SELECT * FROM " + myTableName + " WHERE (dateOfBirth > '" + date + "')";
+        String query = "SELECT * FROM " + myTableName + " WHERE (dateOfBirth < '" + date + "')";
         executeQueryAndPopulate(query);
 
     } // end findPatronsOlderTHan
 
     public void findPatronsYoungerThan(String date) {
-        String query = "SELECT * FROM " + myTableName + " WHERE (dateOfBirth < '" + date + "')";
+        String query = "SELECT * FROM " + myTableName + " WHERE (dateOfBirth > '" + date + "')";
         executeQueryAndPopulate(query);
 
     } // end of findPatronsYoungerThan

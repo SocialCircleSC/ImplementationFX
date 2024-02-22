@@ -233,7 +233,7 @@ public class Account extends EntityBase implements IView {
 
 	/**
 	 * This method is needed solely to enable the Account information to be
-	 * displayable in a table
+	 * displayable in a table NOTE: order is important, this gets the data from each table row
 	 *
 	 */
 	// --------------------------------------------------------------------------
