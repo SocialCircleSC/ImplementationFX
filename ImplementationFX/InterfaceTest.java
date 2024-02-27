@@ -28,14 +28,14 @@ import javafx.stage.Stage;
 import event.Event;
 import event.EventLog;
 import common.PropertyFile;
-
+import model.Librarian;
 import model.Teller;
 import userinterface.MainStageContainer;
 import userinterface.WindowPosition;
 
 public class InterfaceTest extends Application {
 
-    private Teller currentTeller;
+    private Librarian currentLib;
 
     /** Main frame of the application */
     private Stage mainStage;
@@ -58,7 +58,7 @@ public class InterfaceTest extends Application {
         });
 
         try {
-            currentTeller = new Teller();
+            currentLib = new Librarian();
         } catch (Exception exc) {
             System.err.println("InterfaceTest.java - could not create Teller!");
             new Event(Event.getLeafLevelClassName(this), "ATM.<init>", "Unable to create Teller object", Event.ERROR);
