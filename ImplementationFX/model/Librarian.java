@@ -3,6 +3,7 @@ package model;
 
 // system imports
 import java.util.Hashtable;
+import java.util.Hashtable;
 import java.util.Properties;
 
 import event.Event;
@@ -12,6 +13,13 @@ import javafx.stage.Stage;
 // project imports
 import impresario.IModel;
 import impresario.IView;
+import impresario.ModelRegistry;
+import userinterface.MainStageContainer;
+
+import event.Event;
+import userinterface.View;
+import userinterface.ViewFactory;
+import userinterface.WindowPosition;
 import impresario.ModelRegistry;
 import userinterface.MainStageContainer;
 
@@ -98,35 +106,6 @@ public class Librarian implements IView, IModel {
         WindowPosition.placeCenter(myStage);
     }
 
-    @Override
-    public Object getState(String key) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getState'");
-    }
-
-    @Override
-    public void subscribe(String key, IView subscriber) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'subscribe'");
-    }
-
-    @Override
-    public void unSubscribe(String key, IView subscriber) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'unSubscribe'");
-    }
-
-    @Override
-    public void stateChangeRequest(String key, Object value) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'stateChangeRequest'");
-    }
-
-    @Override
-    public void updateState(String key, Object value) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateState'");
-    }
-
 } // ENd of Librarian Class
+
 
