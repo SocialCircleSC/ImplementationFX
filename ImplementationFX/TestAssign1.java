@@ -9,6 +9,9 @@ import model.PatronCollection;
 import java.util.Properties;
 import database.*;
 
+
+//java -cp mariadb-java-client-3.0.3.jar;classes;. ATM
+//To run Java FX
 public class TestAssign1 {
     public static void main(String[] args) {
 
