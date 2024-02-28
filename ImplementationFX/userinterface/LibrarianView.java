@@ -19,10 +19,10 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class LibraianView extends View {
+public class LibrarianView extends View {
 
-    public LibraianView(IModel model) {
-        super(model, "Librarian View");
+    public LibrarianView(IModel model) {
+        super(model, "LibrarianView");
 
         // create a container for showing the contents
         VBox container = new VBox(10);
