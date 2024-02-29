@@ -89,6 +89,22 @@ public class Librarian implements IView, IModel {
 		swapToView(currentScene); // Need to create this function below
     }
 
+        //-----------------------------------------------------------------------------------
+        private void createAndShowBookView()
+        {
+            Scene currentScene = (Scene)myViews.get("BookView");
+    
+            if (currentScene == null)
+            {
+                // create our initial view
+                View newView = ViewFactory.createView("BookView", this); // USE VIEW FACTORY
+                currentScene = new Scene(newView);
+                myViews.put("BookView", currentScene);
+            }
+                    
+            swapToView(currentScene); // Need to create this function below
+        }
+
     public void swapToView(Scene newScene)
     {
         if (newScene == null) // Make sure that we have a new view/scene to swap to
@@ -127,7 +143,10 @@ public class Librarian implements IView, IModel {
     @Override
     public void stateChangeRequest(String key, Object value) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'stateChangeRequest'");
+        if (key.equals("RequestBookView") == true)
+        {
+            createAndShowBookView();
+        }
     }
 
     @Override
