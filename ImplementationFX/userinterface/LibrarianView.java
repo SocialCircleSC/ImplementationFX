@@ -19,10 +19,20 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class LibraianView extends View {
+public class LibrarianView extends View {
 
-    public LibraianView(IModel model) {
-        super(model, "Librarian View");
+     // GUI stuff
+     private TextField bookQuery;
+     private TextField patronQuery;
+     private TextField insertBook;
+     private TextField insertPatron;
+     private Button submitButton;
+ 
+     // For showing error message
+     private MessageView statusLog;
+    
+    public LibrarianView(IModel model) {
+        super(model, "LibrarianView");
 
         // create a container for showing the contents
         VBox container = new VBox(10);
@@ -51,7 +61,7 @@ public class LibraianView extends View {
         Text titleText = new Text("       Library System          ");
         titleText.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         titleText.setTextAlignment(TextAlignment.CENTER);
-        titleText.setFill(Color.DARKGREEN);
+        titleText.setFill(Color.DARKBLUE);
         return titleText;
     }
 
@@ -65,10 +75,10 @@ public class LibraianView extends View {
         grid.setPadding(new Insets(25, 25, 25, 25));
 
         // data entry fields
-        Button bookQueryButton = new Button("Insert New Book:");
+        // Insert Book Button
+        Button bookQueryButton = new Button("Insert New Book");
         grid.add(bookQueryButton, 0, 0);
 
-        bookQueryButton = new Button();
         bookQueryButton.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -76,9 +86,43 @@ public class LibraianView extends View {
                 // processAction(e);
             }
         });
-        grid.add(bookQueryButton, 1, 0);
 
-        submitButton = new Button("Submit");
+        // Insert Patron Button
+        Button patronQueryButton = new Button("Insert New Patron");
+        grid.add(patronQueryButton, 0, 1);
+
+        patronQueryButton.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent e) {
+                // processAction(e);
+            }
+        });
+
+        // Search Books button
+        Button searchBookButton = new Button("Search Books");
+        grid.add(searchBookButton, 0, 2);
+
+        searchBookButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e){
+                // processAction(e);
+            }
+        });
+
+        // Search Patrons button
+        Button searchPatronsButton = new Button("Search Patrons");
+        grid.add(searchPatronsButton, 0, 3);
+        
+        searchPatronsButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e){
+                // processAction(e)
+            }
+        });
+
+        // Submit Button
+        submitButton = new Button("Done");
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -90,7 +134,7 @@ public class LibraianView extends View {
         HBox btnContainer = new HBox(10);
         btnContainer.setAlignment(Pos.BOTTOM_RIGHT);
         btnContainer.getChildren().add(submitButton);
-        grid.add(btnContainer, 1, 3);
+        grid.add(btnContainer, 1, 4);
 
         return grid;
     }
@@ -103,16 +147,6 @@ public class LibraianView extends View {
 
         return statusLog;
     }
-
-    // GUI stuff
-    private TextField bookQuery;
-    private TextField patronQuery;
-    private TextField insertBook;
-    private TextField insertPatron;
-    private Button submitButton;
-
-    // For showing error message
-    private MessageView statusLog;
 
     @Override
     public void updateState(String key, Object value) {

@@ -41,7 +41,7 @@ public class InterfaceTest extends Application {
     private Stage mainStage;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         System.out.println("This is the program for pair assignment 2");
 
         // Create the top-level container (main frame) and add contents to it.
@@ -60,7 +60,7 @@ public class InterfaceTest extends Application {
         try {
             currentLib = new Librarian();
         } catch (Exception exc) {
-            System.err.println("InterfaceTest.java - could not create Teller!");
+            System.err.println("InterfaceTest.java - could not create Librarian!");
             new Event(Event.getLeafLevelClassName(this), "ATM.<init>", "Unable to create Teller object", Event.ERROR);
             exc.printStackTrace();
         }

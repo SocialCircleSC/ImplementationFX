@@ -47,6 +47,10 @@ public class ViewFactory {
 		{
 			return new BalanceInquiryTransactionView(model);
 		}
+		else if (viewName.equals("LibrarianView") == true)
+		{
+			return new LibrarianView(model); // We need to create new Views for each view we make here
+		}
 		else if(viewName.equals("BalanceInquiryReceipt") == true)
 		{
 			return new BalanceInquiryReceipt(model);
