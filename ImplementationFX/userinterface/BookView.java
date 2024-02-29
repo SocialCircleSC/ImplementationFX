@@ -1,3 +1,4 @@
+package userinterface;
 import impresario.IModel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,10 +16,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import userinterface.MessageView;
-import userinterface.View;
 
-public class bookView extends View {
+public class BookView extends View {
 
     // GUI stuff
     private TextField bAuthor;
@@ -30,8 +29,8 @@ public class bookView extends View {
     // For showing error message
     private MessageView statusLog;
 
-    public bookView(IModel model) {
-        super(model, "insertBook");
+    public BookView(IModel model) {
+        super(model, "BookView");
 
         // create a container for showing the contents
         VBox container = new VBox(10);
@@ -87,6 +86,7 @@ public class bookView extends View {
                 // processAction(e);
             }
         });
+        grid.add(bAuthor, 1, 0);
 
         // data entry fields
         // Insert Book Title
@@ -102,6 +102,7 @@ public class bookView extends View {
                 // processAction(e);
             }
         });
+        grid.add(bTitle, 1, 1);
 
         // data entry fields
         // Insert Book Publishing Year
@@ -117,6 +118,7 @@ public class bookView extends View {
                 // processAction(e);
             }
         });
+        grid.add(bPubYear, 1, 2);
 
         // Submit Button
         submitButton = new Button("Done");
