@@ -47,10 +47,6 @@ public class ViewFactory {
 		{
 			return new BalanceInquiryTransactionView(model);
 		}
-		else if (viewName.equals("LibrarianView") == true)
-		{
-			return new LibrarianView(model); // We need to create new Views for each view we make here
-		}
 		else if(viewName.equals("BalanceInquiryReceipt") == true)
 		{
 			return new BalanceInquiryReceipt(model);
@@ -66,6 +62,16 @@ public class ViewFactory {
 		else if(viewName.equals("TransferReceipt") == true)
 		{
 			return new TransferReceipt(model);
+		
+		}
+		else if (viewName.equals("LibrarianView") == true)
+		{
+			return new LibrarianView(model); // We need to create new Views for each view we make here
+		}
+		
+		else if (viewName.equals("BookView") == true)
+		{
+			return new BookView(model); // We need to create new Views for each view we make here
 		}
 		else
 			return null;

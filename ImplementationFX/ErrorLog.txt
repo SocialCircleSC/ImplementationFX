@@ -26,3 +26,5 @@
 [2/28/24 5:32 PM]|InterfaceTest|ATM.<init>|Error|NOTAG|null<Unable to create Teller object>
 [2/28/24 5:36 PM]|InterfaceTest|ATM.<init>|Error|NOTAG|null<Unable to create Teller object>
 [2/28/24 5:42 PM]|InterfaceTest|ATM.<init>|Error|NOTAG|null<Unable to create Teller object>
+[2/29/24 1:09 PM]|AccountHolder|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: (conn=3865) Table 'spr24_csc429_ooloj1.AccountHolder' doesn't exist>
+[2/29/24 1:10 PM]|AccountHolder|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: (conn=3865) Table 'spr24_csc429_ooloj1.AccountHolder' doesn't exist>
