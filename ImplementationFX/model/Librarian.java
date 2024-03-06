@@ -44,6 +44,7 @@ public class Librarian implements IView, IModel {
     // GUI Components
     private Stage myStage;
     private Hashtable<String, Scene> myViews;
+    Book newBook;
 
     public Librarian()
     {
@@ -65,6 +66,12 @@ public class Librarian implements IView, IModel {
 		createAndShowLibrarianView(); // Need to create this function below
 
     } // end of Librarian constructor
+
+    //-----------------------------------------------------------------------------------
+    public void createNewBook()
+    {
+        newBook = new Book();
+    }
 
     //-----------------------------------------------------------------------------------
     private void setDependencies()
@@ -143,9 +150,19 @@ public class Librarian implements IView, IModel {
     @Override
     public void stateChangeRequest(String key, Object value) {
         // TODO Auto-generated method stub
+        if (key.equals(null) == true)
+        {
+            System.out.println("Error has occursed: Library.stateShcnageRequest-- key is null");
+        }
         if (key.equals("RequestBookView") == true)
         {
             createAndShowBookView();
+        }
+        if (key.equals("insertBook") == true)
+        {
+            createNewBook();
+            newBook.processNewBook((Properties)value);
+            newBook.save();
         }
     }
 

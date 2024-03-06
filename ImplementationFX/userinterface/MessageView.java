@@ -54,7 +54,7 @@ public class MessageView extends Text
 	//----------------------------------------------------------
 	public void displayMessage(String message)
 	{
-		// display the passed text in red
+		// display the passed text in blue
 		setFill(Color.BLUE);
 		setText(message);
 	}

@@ -69,6 +69,15 @@ public class Book extends EntityBase implements IView {
         }
     }
 
+    // Constructor to initialize empty Book object
+    public Book()
+    {
+        super(myTableName);
+        setDependencies();
+        persistentState = new Properties();
+    }
+
+    // Constructor to initialize Book object with given properties
     public Book(Properties props) {
         super(myTableName);
 
@@ -76,6 +85,23 @@ public class Book extends EntityBase implements IView {
         persistentState = new Properties();
         Enumeration allKeys = props.propertyNames();
         while (allKeys.hasMoreElements() == true) {
+            String nextKey = (String) allKeys.nextElement();
+            String nextValue = props.getProperty(nextKey);
+
+            if (nextValue != null) {
+                persistentState.setProperty(nextKey, nextValue);
+            }
+        }
+    }
+
+    // DO we need the above constructor if we have this function? This is code repetition...
+    public void processNewBook(Properties props)
+    {
+        setDependencies();
+        
+        Enumeration allKeys = props.propertyNames();
+        while (allKeys.hasMoreElements() == true)
+        {
             String nextKey = (String) allKeys.nextElement();
             String nextValue = props.getProperty(nextKey);
 
@@ -109,7 +135,7 @@ public class Book extends EntityBase implements IView {
         } catch (SQLException ex) {
             updateStatusMessage = "Error in installing book data in database!";
         }
-        // DEBUG System.out.println("updateStateInDatabase " + updateStatusMessage);
+        System.out.println("updateStateInDatabase " + updateStatusMessage);
     }
 
     /* Return Book information as a string */

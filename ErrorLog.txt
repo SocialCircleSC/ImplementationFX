@@ -3,3 +3,6 @@
 [2/15/24 12:35 PM]|JDBCBroker|JDBCBroker|Error|NOTAG|null<Could not load driver class[org.mariadb.jdbc.Driver]>
 [2/15/24 12:35 PM]|JDBCBroker|JDBCBroker|Error|NOTAG|null<Could not load driver class[org.mariadb.jdbc.Driver]>
 [2/15/24 1:18 PM]|JDBCBroker|JDBCBroker|Error|NOTAG|null<Could not load driver class[org.mariadb.jdbc.Driver]>
+[3/5/24 9:31 PM]|JDBCBroker|JDBCBroker|Error|NOTAG|null<Could not load driver class[org.mariadb.jdbc.Driver]>
+[3/5/24 9:34 PM]|JDBCBroker|JDBCBroker|Error|NOTAG|null<Could not load driver class[org.mariadb.jdbc.Driver]>
+[3/5/24 9:41 PM]|JDBCBroker|JDBCBroker|Error|NOTAG|null<Could not load driver class[org.mariadb.jdbc.Driver]>
