@@ -45,6 +45,7 @@ public class Librarian implements IView, IModel {
     private Stage myStage;
     private Hashtable<String, Scene> myViews;
     Book newBook;
+    BookCollection newBookCollection;
 
     public Librarian()
     {
@@ -71,6 +72,18 @@ public class Librarian implements IView, IModel {
     public void createNewBook()
     {
         newBook = new Book();
+    }
+
+    public void searchBooks(String titlePart)
+    {
+        newBookCollection = new BookCollection();
+        newBookCollection.findBooksWithTitleLike(titlePart);
+        createAndShowBookCollectionView();
+    }
+
+    public BookCollection returnBookCollection()
+    {
+        return newBookCollection;
     }
 
     //-----------------------------------------------------------------------------------
@@ -111,6 +124,33 @@ public class Librarian implements IView, IModel {
                     
             swapToView(currentScene); // Need to create this function below
         }
+
+        private void createAndShowSearchBookView()
+        {
+            Scene currentScene = (Scene)myViews.get("SearchBookView");
+    
+            if (currentScene == null)
+            {
+                // create our initial view
+                View newView = ViewFactory.createView("SearchBookView", this); // USE VIEW FACTORY
+                currentScene = new Scene(newView);
+                myViews.put("SearchBookView", currentScene);
+            }
+                    
+            swapToView(currentScene); // Need to create this function below
+        }
+
+        //-----------------------------------------------------------------------------------
+        private void createAndShowBookCollectionView()
+        {
+            // create our initial view
+            View newView = ViewFactory.createView("BookCollectionView", this); // USE VIEW FACTORY
+            Scene currentScene = new Scene(newView);
+                    
+            swapToView(currentScene); // Need to create this function below
+        }
+        
+        
 
     public void swapToView(Scene newScene)
     {
@@ -154,15 +194,42 @@ public class Librarian implements IView, IModel {
         {
             System.out.println("Error has occursed: Library.stateShcnageRequest-- key is null");
         }
+        else
         if (key.equals("RequestBookView") == true)
         {
             createAndShowBookView();
         }
+        else if (key.equals("RequestBookCollectionView") == true)
+        {
+            //createAndShowBookCollectionView();
+        }
+        else
         if (key.equals("insertBook") == true)
         {
             createNewBook();
             newBook.processNewBook((Properties)value);
             newBook.save();
+        }
+        else if (key.equals("SearchBookView") == true)
+        {
+            createAndShowSearchBookView();
+        }
+        else if (key.equals("searchBook") == true)
+        {
+            searchBooks((String)value);
+        }
+        else
+        if (key.equals("CancelTransaction") == true)
+        {
+            createAndShowLibrarianView();
+        }
+        else if (key.equals("CancelBookList") == true)
+        {
+            createAndShowLibrarianView();
+        }
+        else if (key.equals("BookSelected") == true)
+        {
+            // ???
         }
     }
 

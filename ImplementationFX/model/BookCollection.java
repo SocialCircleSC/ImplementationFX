@@ -10,7 +10,7 @@ public class BookCollection extends EntityBase implements IView {
 
     private static final String myTableName = "Book";
    
-    Vector<Book> bookList = new Vector();
+    private Vector<Book> bookList = new Vector();
 
     public BookCollection() {
         super(myTableName);
@@ -87,7 +87,12 @@ public class BookCollection extends EntityBase implements IView {
     @Override
     public Object getState(String key) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getState'");
+        if (key.equals("Books"))
+			return bookList;
+		else
+		if (key.equals("BookList"))
+			return this;
+		return null;
     }
 
     @Override

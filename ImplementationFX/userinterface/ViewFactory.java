@@ -73,6 +73,14 @@ public class ViewFactory {
 		{
 			return new BookView(model); // We need to create new Views for each view we make here
 		}
+		else if (viewName.equals("SearchBookView") == true)
+		{
+			return new searchBookView(model);
+		}
+		else if (viewName.equals("BookCollectionView") == true)
+		{
+			return new BookCollectionView(model);
+		}
 		else
 			return null;
 	}
