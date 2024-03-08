@@ -40,6 +40,8 @@ public class Librarian implements IView, IModel {
     // Instead of AccountHolder, we will use instances of our Book and Patron
     private Book myBook;
     private Patron myPatron;
+    private BookCollection books;
+	private Book selectedBook;
 
     // GUI Components
     private Stage myStage;
@@ -171,8 +173,10 @@ public class Librarian implements IView, IModel {
 
     @Override
     public Object getState(String key) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getState'");
+    
+		if (key.equals("BookList"))
+			return newBookCollection;
+		return null;
     }
 
     @Override
@@ -229,7 +233,7 @@ public class Librarian implements IView, IModel {
         }
         else if (key.equals("BookSelected") == true)
         {
-            // ???
+            
         }
     }
 

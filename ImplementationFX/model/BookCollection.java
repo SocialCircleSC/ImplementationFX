@@ -5,16 +5,17 @@ import java.util.Vector;
 import exception.InvalidPrimaryKeyException;
 import impresario.IView;
 import java.util.Properties;
+import model.Book;
 
 public class BookCollection extends EntityBase implements IView {
 
     private static final String myTableName = "Book";
    
-    private Vector<Book> bookList = new Vector();
+    private Vector<Book> bookList;
 
     public BookCollection() {
         super(myTableName);
-        bookList = new Vector();
+        bookList = new Vector<Book>();
     }
 
     private void executeQueryAndPopulate(String query)
@@ -31,6 +32,25 @@ public class BookCollection extends EntityBase implements IView {
             bookList.add(book);
         }
     }
+
+
+    //----------------------------------------------------------
+	public Book retrieve(String bookId)
+	{
+		Book retValue = null;
+		for (int cnt = 0; cnt < bookList.size(); cnt++)
+		{
+			Book nextBook = bookList.elementAt(cnt);
+			String nextBookId = (String)nextBook.getState("bookId");
+			if (nextBookId.equals(bookId) == true)
+			{
+				retValue = nextBook;
+				return retValue; // we should say 'break;' here
+			}
+		}
+
+		return retValue;
+	}
 
     public void findBooksOlderThanDate(String date)  {
 
@@ -86,12 +106,9 @@ public class BookCollection extends EntityBase implements IView {
 
     @Override
     public Object getState(String key) {
-        // TODO Auto-generated method stub
         if (key.equals("Books"))
 			return bookList;
-		else
-		if (key.equals("BookList"))
-			return this;
+		
 		return null;
     }
 

@@ -1,4 +1,6 @@
 package userinterface;
+// system imports
+import javafx.beans.property.SimpleStringProperty;
 import impresario.IModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -113,7 +115,7 @@ public class BookCollectionView extends View{
 		bookTitleColumn.setMinWidth(100);
 		bookTitleColumn.setCellValueFactory(
 	                new PropertyValueFactory<BookTableModel, String>("bookTitle"));
-		  
+		
 		TableColumn bookAuthorColumn = new TableColumn("Book Author") ;
 		bookAuthorColumn.setMinWidth(100);
 		bookAuthorColumn.setCellValueFactory(
@@ -127,9 +129,9 @@ public class BookCollectionView extends View{
 		
 		TableColumn bookStatusColumn = new TableColumn("Status");
 		bookStatusColumn.setMinWidth(100);
-		bookStatusColumn.setCellFactory(
-			new PropertyValueFactory<BookTableModel, String>("status"));
-
+		bookStatusColumn.setCellValueFactory(
+			new PropertyValueFactory<BookTableModel, String>("bookStatus"));
+		
 		tableOfBooks.getColumns().addAll(bookNumberColumn, 
 				bookTitleColumn, bookAuthorColumn, bookPubYearColumn, bookStatusColumn);
 
@@ -138,26 +140,14 @@ public class BookCollectionView extends View{
 			public void handle(MouseEvent event)
 			{
 				if (event.isPrimaryButtonDown() && event.getClickCount() >=2 ){
-					processBookSelected(); // create this function
+					
 				}
 			}
 		});
 
 		ScrollPane scrollPane = new ScrollPane();
-		scrollPane.setPrefSize(115, 150);
+		scrollPane.setPrefSize(150, 150);
 		scrollPane.setContent(tableOfBooks);
-
-		submitButton = new Button("Submit");
- 		submitButton.setOnAction(new EventHandler<ActionEvent>() {
-
-       		     @Override
-       		     public void handle(ActionEvent e) {
-       		     	clearErrorMessage(); 
-					// do the inquiry
-					processBookSelected();
-					
-            	 }
-        	});
 
 		cancelButton = new Button("Back");
  		cancelButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -165,32 +155,27 @@ public class BookCollectionView extends View{
        		     @Override
        		     public void handle(ActionEvent e) {
 					/**
-					 * Process the Cancel button.
-					 * The ultimate result of this action is that the transaction will tell the teller to
-					 * to switch to the Book view. BUT THAT IS NOT THIS VIEW'S CONCERN.
-					 * It simply tells its model (controller) that the transaction was canceled, and leaves it
-					 * to the model to decide to tell the teller to do the switch back.
-			 		*/
+					 * Process the Cancel button.*/
 					//----------------------------------------------------------
        		     	clearErrorMessage();
        		     	myModel.stateChangeRequest("CancelBookList", null); 
             	  }
         	});
 		
-			HBox btnContainer = new HBox(100);
+			HBox btnContainer = new HBox(200);
 			btnContainer.setAlignment(Pos.CENTER);
-			btnContainer.getChildren().add(submitButton);
 			btnContainer.getChildren().add(cancelButton);
 			
 			vbox.getChildren().add(grid);
 			vbox.getChildren().add(scrollPane);
 			vbox.getChildren().add(btnContainer);
-		
+
 			return vbox;
     }
 
 	//--------------------------------------------------------------------------
-	protected void processAccountSelected()
+	// Not using this
+	protected void processBookSelected()
 	{
 		BookTableModel selectedItem = tableOfBooks.getSelectionModel().getSelectedItem();
 		
@@ -198,7 +183,7 @@ public class BookCollectionView extends View{
 		{
 			String selectedBookNumber = selectedItem.getBookId();
 
-			myModel.stateChangeRequest("BookSelected", selectedBookNumber);
+			myModel.stateChangeRequest("BookSelected", selectedBookNumber); // How to use this?
 		}
 	}
 
@@ -209,9 +194,9 @@ public class BookCollectionView extends View{
 		 ObservableList<BookTableModel> tableData = FXCollections.observableArrayList(); // this must be used
 		 try
 		 {
-			 BookCollection bookCollection = (BookCollection)myModel.getState("BookList"); // need to implement getState for these
+			 BookCollection bookList = (BookCollection)myModel.getState("BookList"); // need to implement getState for these
  
-			  Vector entryList = (Vector)bookCollection.getState("Books"); // implement getState
+			  Vector entryList = (Vector)bookList.getState("Books"); // implement getState
 			 Enumeration entries = entryList.elements();
  
 			 while (entries.hasMoreElements() == true)
@@ -224,11 +209,13 @@ public class BookCollectionView extends View{
 				 tableData.add(nextTableRowData);
 				 
 			 }
-			 
+	
 			 tableOfBooks.setItems(tableData);
 		 }
 		 catch (Exception e) {//SQLException e) {
 			 // Need to handle this exception
+			 System.out.println("Error in table creation: " + e);
+			 e.printStackTrace();
 		 }
 	 }
 

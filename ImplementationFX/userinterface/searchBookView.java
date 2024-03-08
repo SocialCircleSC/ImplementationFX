@@ -131,7 +131,7 @@ public class searchBookView extends View {
         else
         {
             try {
-                myModel.stateChangeRequest("searchBook", bTitleEntered); // call stateChangeRequest to insert a book
+                myModel.stateChangeRequest("searchBook", bTitleEntered); // call stateChangeRequest to search a book
                 
             }
 

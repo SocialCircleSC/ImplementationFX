@@ -187,14 +187,14 @@ public class Book extends EntityBase implements IView {
 
     @Override
     public void updateState(String key, Object value) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateState'");
-    }
+        stateChangeRequest(key, value);    }
 
     @Override
     public String getState(String key) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getState'");
+        if (key.equals("UpdateStatusMessage") == true)
+			return updateStatusMessage;
+
+		return persistentState.getProperty(key);
     }
 
     @Override
