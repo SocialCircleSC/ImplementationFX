@@ -27,7 +27,7 @@ public class LibrarianView extends View {
      private TextField patronQuery;
      private TextField insertBook;
      private TextField insertPatron;
-     private Button submitButton;
+     private Button exitButton;
  
      // For showing error message
      private MessageView statusLog;
@@ -123,8 +123,8 @@ public class LibrarianView extends View {
         });
 
         // Submit Button
-        submitButton = new Button("Done");
-        submitButton.setOnAction(new EventHandler<ActionEvent>() {
+        exitButton = new Button("Exit");
+        exitButton.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent e) {
@@ -134,7 +134,7 @@ public class LibrarianView extends View {
 
         HBox btnContainer = new HBox(10);
         btnContainer.setAlignment(Pos.BOTTOM_RIGHT);
-        btnContainer.getChildren().add(submitButton);
+        btnContainer.getChildren().add(exitButton);
         grid.add(btnContainer, 1, 4);
 
         return grid;
