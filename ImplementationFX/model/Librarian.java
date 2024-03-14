@@ -47,7 +47,9 @@ public class Librarian implements IView, IModel {
     private Stage myStage;
     private Hashtable<String, Scene> myViews;
     Book newBook;
+    Patron newPatron;
     BookCollection newBookCollection;
+    PatronCollection newPatronCollection;
 
     public Librarian()
     {
@@ -76,11 +78,24 @@ public class Librarian implements IView, IModel {
         newBook = new Book();
     }
 
+    public void createNewPatron()
+    {
+        newPatron = new Patron();
+    }
+
     public void searchBooks(String titlePart)
     {
         newBookCollection = new BookCollection();
         newBookCollection.findBooksWithTitleLike(titlePart);
         createAndShowBookCollectionView();
+    }
+
+    public void searchPatrons(String zip)
+    {
+        System.out.println("Searching patrons...");
+        newPatronCollection = new PatronCollection();
+        newPatronCollection.findPatronsAtZipCode(zip);
+        createAndShowPatronCollectionView();
     }
 
     public BookCollection returnBookCollection()
@@ -127,6 +142,21 @@ public class Librarian implements IView, IModel {
             swapToView(currentScene); // Need to create this function below
         }
 
+        private void createAndShowPatronView()
+        {
+            Scene currentScene = (Scene)myViews.get("PatronView");
+    
+            if (currentScene == null)
+            {
+                // create our initial view
+                View newView = ViewFactory.createView("PatronView", this); // USE VIEW FACTORY
+                currentScene = new Scene(newView);
+                myViews.put("PatronView", currentScene);
+            }
+                    
+            swapToView(currentScene); // Need to create this function below
+        }
+
         private void createAndShowSearchBookView()
         {
             Scene currentScene = (Scene)myViews.get("SearchBookView");
@@ -142,6 +172,21 @@ public class Librarian implements IView, IModel {
             swapToView(currentScene); // Need to create this function below
         }
 
+        private void createAndShowSearchPatronView()
+        {
+            Scene currentScene = (Scene)myViews.get("SearchPatronView");
+    
+            if (currentScene == null)
+            {
+                // create our initial view
+                View newView = ViewFactory.createView("SearchPatronView", this); // USE VIEW FACTORY
+                currentScene = new Scene(newView);
+                myViews.put("SearchPatronView", currentScene);
+            }
+                    
+            swapToView(currentScene); // Need to create this function below
+        }
+
         //-----------------------------------------------------------------------------------
         private void createAndShowBookCollectionView()
         {
@@ -152,6 +197,23 @@ public class Librarian implements IView, IModel {
             swapToView(currentScene); // Need to create this function below
         }
         
+        private void createAndShowPatronCollectionView()
+        {
+
+            try{
+                // create our initial view
+            View newView = ViewFactory.createView("PatronCollectionView", this); // USE VIEW FACTORY
+            Scene currentScene = new Scene(newView);
+                    
+            swapToView(currentScene); // Need to create this function below
+            }
+            catch(Exception ex)
+            {
+                System.out.println("Error creating PatronCollectionView");
+                ex.printStackTrace();
+            }
+            
+        }
         
 
     public void swapToView(Scene newScene)
@@ -176,7 +238,10 @@ public class Librarian implements IView, IModel {
     
 		if (key.equals("BookList"))
 			return newBookCollection;
+        else if (key.equals("PatronList"))
+            return newPatronCollection;
 		return null;
+        
     }
 
     @Override
@@ -203,9 +268,9 @@ public class Librarian implements IView, IModel {
         {
             createAndShowBookView();
         }
-        else if (key.equals("RequestBookCollectionView") == true)
+        else if (key.equals("RequestPatronView") == true)
         {
-            //createAndShowBookCollectionView();
+            createAndShowPatronView();
         }
         else
         if (key.equals("insertBook") == true)
@@ -213,6 +278,12 @@ public class Librarian implements IView, IModel {
             createNewBook();
             newBook.processNewBook((Properties)value);
             newBook.save();
+        }
+        else if (key.equals("insertPatron") == true)
+        {
+            createNewPatron();
+            newPatron.processNewPatron((Properties)value);
+            newPatron.save();
         }
         else if (key.equals("SearchBookView") == true)
         {
@@ -231,9 +302,17 @@ public class Librarian implements IView, IModel {
         {
             createAndShowLibrarianView();
         }
-        else if (key.equals("BookSelected") == true)
+        else if (key.equals("SearchPatronView") == true)
         {
-            
+            createAndShowSearchPatronView();
+        }
+        else if (key.equals("SearchPatron") == true)
+        {
+            searchPatrons((String)value);
+        }
+        else if (key.equals("CancelPatronList") == true)
+        {
+            createAndShowLibrarianView();
         }
     }
 

@@ -96,7 +96,7 @@ public class LibrarianView extends View {
 
             @Override
             public void handle(ActionEvent e) {
-                // processAction(e);
+                myModel.stateChangeRequest("RequestPatronView", null);
             }
         });
 
@@ -118,7 +118,7 @@ public class LibrarianView extends View {
         searchPatronsButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e){
-                // processAction(e)
+                myModel.stateChangeRequest("SearchPatronView", null);
             }
         });
 

@@ -7,6 +7,7 @@ package model;
 // system imports
 import java.util.Properties;
 import java.util.Vector;
+import model.Patron;
 
 // project imports
 import exception.InvalidPrimaryKeyException;
@@ -92,7 +93,10 @@ public class PatronCollection extends EntityBase implements IView {
     }
 
     public Object getState(String key) {
-        throw new UnsupportedOperationException("Unimplemented method 'getState'");
+        if (key.equals("Patrons"))
+			return patrons;
+		
+		return null;
     }
 
     /** Called via the IView relationship */

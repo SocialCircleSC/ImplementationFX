@@ -18,6 +18,14 @@ public class Patron extends EntityBase implements IView {
 	protected Properties dependencies;
 	private String updateStatusMessage = ""; // For GUI
 
+
+	public Patron()
+	{
+		super(myTableName);
+        setDependencies();
+        persistentState = new Properties();
+	}
+
 	// Constructor
 	// from patronID in database
 	// ----------------------------------------------------------
@@ -94,6 +102,39 @@ public class Patron extends EntityBase implements IView {
 
 	}
 
+	// --------------------------------------------------------------------------
+	public Vector<String> getEntryListView() {
+		Vector<String> v = new Vector<String>();
+
+		v.addElement(persistentState.getProperty("patronID"));
+		v.addElement(persistentState.getProperty("name"));
+		v.addElement(persistentState.getProperty("address"));
+		v.addElement(persistentState.getProperty("city"));
+        v.addElement(persistentState.getProperty("stateCode"));
+		v.addElement(persistentState.getProperty("zip"));
+		v.addElement(persistentState.getProperty("email"));
+		v.addElement(persistentState.getProperty("dateOfBirth"));
+		v.addElement(persistentState.getProperty("status"));
+
+		return v;
+	}
+
+	public void processNewPatron(Properties props)
+	{
+		setDependencies();
+        
+        Enumeration allKeys = props.propertyNames();
+        while (allKeys.hasMoreElements() == true)
+        {
+            String nextKey = (String) allKeys.nextElement();
+            String nextValue = props.getProperty(nextKey);
+
+            if (nextValue != null) {
+                persistentState.setProperty(nextKey, nextValue);
+            }
+        }
+	}
+	
 	/*
 	 * these classes should have an update method
 	 * that either inserts a new object into the database
@@ -168,13 +209,14 @@ public class Patron extends EntityBase implements IView {
 	@Override
 	public void updateState(String key, Object value) {
 		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'updateState'");
-	}
+		stateChangeRequest(key, value);    }	
 
 	@Override
 	public Object getState(String key) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getState'");
+		if (key.equals("UpdateStatusMessage") == true)
+			return updateStatusMessage;
+
+		return persistentState.getProperty(key);
 	}
 
 	@Override
